@@ -9,7 +9,7 @@ public abstract class AbstractMessageProcessor {
 
     protected abstract void doProcess(AbstractMessage message);
 
-    public abstract boolean accept(AbstractMessage message);
+    protected abstract boolean accept(AbstractMessage message);
 
     public void process(AbstractMessage message) {
         if (accept(message)) {

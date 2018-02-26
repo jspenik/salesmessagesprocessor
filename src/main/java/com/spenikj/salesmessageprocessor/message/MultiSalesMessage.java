@@ -15,12 +15,7 @@ public class MultiSalesMessage extends AbstractMessage {
         sales = LongStream.rangeClosed(1, occurencies).boxed().map(l -> new Sale(new ProductType(productTypeName), value)).collect(Collectors.toList());
     }
 
-    public MultiSalesMessage(Collection<Sale> sales) {
-        this.sales = sales;
-    }
-
     public Collection<Sale> getSales() {
         return sales;
     }
-
 }

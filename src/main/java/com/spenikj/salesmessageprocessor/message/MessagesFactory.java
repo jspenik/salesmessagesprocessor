@@ -10,15 +10,15 @@ public final class MessagesFactory {
         throw new UnsupportedOperationException();
     }
 
-    public static AbstractMessage simpleSaleMessage(String productTypeName, BigDecimal value) {
+    public static SimpleSaleMessage simpleSaleMessage(String productTypeName, BigDecimal value) {
         return new SimpleSaleMessage(new Sale(new ProductType(productTypeName), value));
     }
 
-    public static AbstractMessage multipleSalesMessage(String productTypeName, BigDecimal value, long occurencies) {
+    public static MultiSalesMessage multipleSalesMessage(String productTypeName, BigDecimal value, long occurencies) {
         return new MultiSalesMessage(productTypeName, value, occurencies);
     }
 
-    public static AbstractMessage operationSalesMessage(String productTypeName, BigDecimal amoutn, SalesOperationMessage.Operation operation) {
-        return new SalesOperationMessage(productTypeName, amoutn, operation);
+    public static SalesOperationMessage operationSalesMessage(String productTypeName, BigDecimal amount, SalesOperationMessage.Operation operation) {
+        return new SalesOperationMessage(productTypeName, amount, operation);
     }
 }

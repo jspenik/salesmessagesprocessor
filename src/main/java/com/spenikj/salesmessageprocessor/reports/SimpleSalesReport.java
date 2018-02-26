@@ -3,8 +3,9 @@ package com.spenikj.salesmessageprocessor.reports;
 import com.spenikj.salesmessageprocessor.sale.Sale;
 import java.math.BigDecimal;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
+import static java.util.stream.Collectors.*;
 
 /**
  *
@@ -16,10 +17,19 @@ public class SimpleSalesReport extends Report {
     protected final BigDecimal total;
 
     public SimpleSalesReport(Collection<Sale> sales) {
-        salesByType = new HashMap<>();
-        sales.stream().forEach(sale -> {
-            salesByType.compute(sale.getProductType().getName(), (key, value) -> value != null ? value.add(sale.getValue()) : sale.getValue());
-        });
+        salesByType = sales.stream()
+                .collect(
+                        groupingBy(
+                                sale -> sale.getProductType().getName(),
+                                mapping(
+                                        Sale::getValue,
+                                        collectingAndThen(
+                                                reducing(BigDecimal::add),
+                                                Optional::get
+                                        )
+                                )
+                        )
+                );
 
         total = salesByType.values().stream().reduce(BigDecimal::add).get();
     }

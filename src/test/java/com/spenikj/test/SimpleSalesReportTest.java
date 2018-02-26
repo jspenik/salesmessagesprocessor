@@ -34,6 +34,8 @@ public class SimpleSalesReportTest {
                 ).collect(Collectors.toList())
         );
         
+        report.printReport();
+        
         Assert.assertEquals(report.getSubTotalOf("apple"), BigDecimal.valueOf(40l));
         Assert.assertEquals(report.getSubTotalOf("orange"), BigDecimal.valueOf(10l));
 

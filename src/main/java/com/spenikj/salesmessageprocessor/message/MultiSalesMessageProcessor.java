@@ -10,8 +10,7 @@ public class MultiSalesMessageProcessor extends AbstractMessageProcessor {
     }
 
     @Override
-    public boolean accept(AbstractMessage message) {
+    protected boolean accept(AbstractMessage message) {
         return message instanceof MultiSalesMessage;
     }
-
 }
