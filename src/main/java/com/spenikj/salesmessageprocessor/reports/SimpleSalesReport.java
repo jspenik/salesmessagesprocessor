@@ -7,10 +7,6 @@ import java.util.Map;
 import java.util.Optional;
 import static java.util.stream.Collectors.*;
 
-/**
- *
- * @author Spenik János <jspenik@indamail.hu>
- */
 public class SimpleSalesReport extends Report {
 
     protected final Map<String, BigDecimal> salesByType;
